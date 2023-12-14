@@ -14,9 +14,9 @@ STORAGE_DIR = ROOT_DIR.joinpath('storage')
 STORAGE_DATA_FILE = STORAGE_DIR.joinpath('data.json')
 HTTP_HOST = '0.0.0.0'
 HTTP_PORT = 3000
-SOKETS_HOST = '127.0.0.1'
-SOKETS_PORT = 5000
-SOKETS_BUFFER = 1024
+SOCKETS_HOST = '127.0.0.1'
+SOCKETS_PORT = 5000
+SOCKETS_BUFFER = 1024
 
 
 class MyHTTPHandler(BaseHTTPRequestHandler):
@@ -48,7 +48,7 @@ class MyHTTPHandler(BaseHTTPRequestHandler):
             self.wfile.write(f.read())
 
     def do_POST(self):
-        server_address = (SOKETS_HOST, SOKETS_PORT)
+        server_address = (SOCKETS_HOST, SOCKETS_PORT)
         data_size = int(self.headers['Content-Length'])
         data = self.rfile.read(data_size)
         socket_client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -65,6 +65,7 @@ def start_http_server(host, port):
     server_address = (host, port)
     httpd = HTTPServer(server_address, MyHTTPHandler)
     logging.info('Starting httpd...')
+
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
@@ -111,7 +112,7 @@ def start_sockets_server(host, port):
     logging.info('Starting socket server...')
     try:
         while True:
-            data, address = socket_server.recvfrom(SOKETS_BUFFER)
+            data, address = socket_server.recvfrom(SOCKETS_BUFFER)
             logging.debug(f'Received data from {address}: {data}')
             # socket_server.sendto(data, address)
             save_data_to_file(data)
@@ -131,7 +132,7 @@ def main():
     http_server = Thread(target=start_http_server, args=(HTTP_HOST, HTTP_PORT))
     http_server.start()
 
-    socket_server = Thread(target=start_sockets_server, args=(SOKETS_HOST, SOKETS_PORT))
+    socket_server = Thread(target=start_sockets_server, args=(SOCKETS_HOST, SOCKETS_PORT))
     socket_server.start()
 
 
