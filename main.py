@@ -64,14 +64,16 @@ class MyHTTPHandler(BaseHTTPRequestHandler):
 def start_http_server(host, port):
     server_address = (host, port)
     httpd = HTTPServer(server_address, MyHTTPHandler)
-    logging.info('Starting httpd...')
+    logging.info('Starting http server...')
+    logging.info('Web server is running on address: http://localhost:{port}'.format(port=port))
 
     try:
         httpd.serve_forever()
+        
     except KeyboardInterrupt:
         pass
     finally:
-        logging.info('Closing httpd...')
+        logging.info('Closing http server...')
         httpd.server_close()
 
 

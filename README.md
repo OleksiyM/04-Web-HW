@@ -31,3 +31,18 @@ The HTTP and socket servers are started in separate threads to allow concurrent 
 ## Error Handling
 
 Exceptions are caught and logged to help debug any issues receiving or storing data.
+
+## How to Run in Docker
+
+### Build the Image
+
+```bash
+docker build . -t http-socket-server
+```
+
+### Run the Image
+1. Open the Docker GUI app.
+2. Click the "Run" button on the new image.
+3. Enter the "Optional Settings":
+* Fill in the `port` with `3000`.
+* Fill in the `host` from Volumes (select the local folder where data will be stored).
