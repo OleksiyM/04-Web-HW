@@ -50,9 +50,13 @@ docker build . -t http-socket-server
 ### Run the Docker Image from the Command Line
 
 To run the docker image `http-socket-server` from the command line, you can use the following command:
-
+**Windows**
 ```bash
 docker run -it -p 3000:3000 -v c:\work\storage:/app/storage http-socket-server
 ```
+**Linux**
+```bash
+docker run -it -p 3000:3000 -v ~/storage:/app/storage http-socket-server
+```
 
-This command will run the docker image in interactive mode, map the container port 3000 to the host port 3000, and mount the host folder `c:\work\storage` to the container folder `/app/storage`. You can replace `c:\work\storage` with any other local directory on your device.
+This command will run the docker image in interactive mode, map the container port 3000 to the host port 3000, and mount the host folder `c:\work\storage`or `~/storage` to the container folder `/app/storage`. You can replace `c:\work\storage` or `~/storage` with any other local directory on your device.
