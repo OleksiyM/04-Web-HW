@@ -40,9 +40,19 @@ Exceptions are caught and logged to help debug any issues receiving or storing d
 docker build . -t http-socket-server
 ```
 
-### Run the Image
+### Run the Docker Image from GUI
 1. Open the Docker GUI app.
 2. Click the "Run" button on the new image.
 3. Enter the "Optional Settings":
 * Fill in the `port` with `3000`.
 * Fill in the `host` from Volumes (select the local folder where data will be stored).
+
+### Run the Docker Image from the Command Line
+
+To run the docker image `http-socket-server` from the command line, you can use the following command:
+
+```bash
+docker run -it -p 3000:3000 -v c:\work\storage:/app/storage http-socket-server
+```
+
+This command will run the docker image in interactive mode, map the container port 3000 to the host port 3000, and mount the host folder `c:\work\storage` to the container folder `/app/storage`. You can replace `c:\work\storage` with any other local directory on your device.
