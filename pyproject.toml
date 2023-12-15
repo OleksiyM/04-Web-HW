@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "http-socket-server"
+version = "0.1.0"
+description = "This project implements a simple web application that uses both HTTP and socket servers to receive and store messages."
+authors = ["OleksiyM <OleksiyM@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
