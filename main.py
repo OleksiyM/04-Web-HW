@@ -1,6 +1,7 @@
 import json
 import logging
 import mimetypes
+import os
 import socket
 import urllib
 from datetime import datetime
@@ -127,6 +128,10 @@ def start_sockets_server(host, port):
 
 
 def main():
+    abspath = os.path.abspath(__file__)
+    dir_name = os.path.dirname(abspath)
+    os.chdir(dir_name)
+
     logging.basicConfig(level=logging.DEBUG, format='%(levelname)s - %(threadName)s - %(message)s')
 
     create_storage_dir(STORAGE_DIR, STORAGE_DATA_FILE)
